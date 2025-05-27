@@ -82,7 +82,7 @@ const Room = () => {
           camera={{
             position: [1.99, 0.49, 0.52],
             rotation: [-0.35, 1.30, 0.33],
-            fov: 62,
+            fov: 57,
             near: 0.1,
             far: 1000,
             up: [0, 1, 0]
@@ -97,7 +97,7 @@ const Room = () => {
                   enableZoom={true}
                   enableRotate={true}
                   enablePan={false}
-                  minDistance={1.95}        // כמעט אותו מרחק כמו ההתחלתי
+                  minDistance={1}        // כמעט אותו מרחק כמו ההתחלתי
                   maxDistance={2.3}        // אפשרות לזום אאוט קצת יותר
                   minAzimuthAngle={1.2}     // הגבלת סיבוב מינימלית
                   maxAzimuthAngle={1.4}     // הגבלת סיבוב מקסימלית
