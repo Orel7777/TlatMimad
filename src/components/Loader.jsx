@@ -5,7 +5,7 @@ const Loader = () => {
     <Html>
     <div className='flex items-center justify-center w-full h-full bg-gray-800'>
         <h1>
-            Loading...
+            Loading....
         </h1>
     </div>
 
