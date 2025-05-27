@@ -4,9 +4,12 @@ Command: npx gltfjsx@6.5.3 dor9.gltf
 */
 
 import React, { useState } from 'react'
-import { useGraph } from '@react-three/fiber'
+import { useGraph, extend } from '@react-three/fiber'
 import { useGLTF, Outlines, useCursor } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
+import { RectAreaLight } from 'three'
+
+extend({ RectAreaLight })
 
 const Room3d  = (props) =>{
   const { scene } = useGLTF('/model/glb/dor8.glb')
@@ -297,6 +300,7 @@ const Room3d  = (props) =>{
           e.stopPropagation()
           setHoverComputer(true)
         }}>
+          
         <group scale={[1.073, 1, 1.562]}>
           <mesh 
             geometry={nodes.Plane002_1.geometry} 
@@ -380,6 +384,8 @@ const Room3d  = (props) =>{
       <mesh geometry={nodes.Cube006.geometry} material={materials['Plastic Grey 22']} position={[1.023, 0.645, -0.525]} rotation={[0.332, 0, 0]} scale={[0.241, 0.001, 0.005]} />
       <mesh geometry={nodes.Cube007.geometry} material={materials['Plastic Black 4']} position={[1.03, 0.884, -0.56]} scale={[0.241, 0.017, 0.049]} />
       <mesh geometry={nodes.Plane001.geometry} material={materials['Procedural Glass for Windows']} position={[1.028, 0.521, -0.618]} rotation={[Math.PI / 2, 0, 0]} scale={[0.233, 1, 0.377]} />
+
+
       <group position={[-6.52, -2.233, -3.312]} scale={0.126}>
         <mesh geometry={nodes.Mesh024.geometry} material={materials['glass.001']} />
         <mesh geometry={nodes.Mesh024_1.geometry} material={materials['glass.002']} />
@@ -389,6 +395,8 @@ const Room3d  = (props) =>{
         <mesh geometry={nodes.Mesh024_5.geometry} material={materials['wall white.002']} />
         <mesh geometry={nodes.Mesh024_6.geometry} material={materials.plane_diffuse} />
       </group>
+
+
       <group position={[-1.446, -2.233, -3.312]} scale={0.126}>
         <mesh geometry={nodes.Mesh025.geometry} material={materials['glass.001']} />
         <mesh geometry={nodes.Mesh025_1.geometry} material={materials['glass.002']} />
@@ -398,15 +406,130 @@ const Room3d  = (props) =>{
         <mesh geometry={nodes.Mesh025_5.geometry} material={materials['wall white.002']} />
         <mesh geometry={nodes.Mesh025_6.geometry} material={materials.plane_diffuse} />
       </group>
-      <mesh geometry={nodes.Plane002.geometry} material={nodes.Plane002.material} position={[-0.338, 0.98, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane003.geometry} material={nodes.Plane003.material} position={[-0.935, 0.589, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane004.geometry} material={nodes.Plane004.material} position={[-0.122, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane005.geometry} material={nodes.Plane005.material} position={[-1.146, -0.157, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane006.geometry} material={nodes.Plane006.material} position={[-0.335, -0.537, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane007.geometry} material={nodes.Plane007.material} position={[-0.926, -0.883, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane008.geometry} material={nodes.Plane008.material} position={[0.697, -0.916, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane009.geometry} material={nodes.Plane009.material} position={[0.469, 0.22, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
-      <mesh geometry={nodes.Plane010.geometry} material={nodes.Plane010.material} position={[0.472, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]} />
+
+    {/* חלונות */}
+      <group>
+        {/* חלון מואר עליון */}
+        <mesh 
+          geometry={nodes.Plane002.geometry} 
+          material={nodes.Plane002.material} 
+          position={[-0.338, 0.98, -3.275]} 
+          rotation={[Math.PI / 2, 0, 0]} 
+          scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            emissive="#ffd700"
+            emissiveIntensity={0.8}
+            transparent
+            opacity={0.95}
+          />
+          <rectAreaLight 
+            width={1.5}
+            height={2}
+            intensity={3}
+            color="#ffd700"
+            position={[0, 0.1, 0]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <pointLight
+            intensity={1}
+            distance={2}
+            color="#ffd700"
+            position={[0, 0.2, 0]}
+          />
+        </mesh>
+
+        {/* חלון מואר ראשון */}
+        <mesh 
+          geometry={nodes.Plane004.geometry} 
+          material={nodes.Plane004.material} 
+          position={[-0.122, -0.16, -3.275]} 
+          rotation={[Math.PI / 2, 0, 0]} 
+          scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            emissive="#ffd700"
+            emissiveIntensity={0.5}
+            transparent
+            opacity={0.9}
+          />
+          <rectAreaLight 
+            width={1.5}
+            height={2}
+            intensity={2}
+            color="#ffd700"
+            position={[0, 0.1, 0]}
+            rotation={[0, Math.PI, 0]}
+          />
+        </mesh>
+
+        {/* חלון מואר שני */}
+        <mesh 
+          geometry={nodes.Plane005.geometry} 
+          material={nodes.Plane005.material} 
+          position={[-1.146, -0.157, -3.275]} 
+          rotation={[Math.PI / 2, 0, 0]} 
+          scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            emissive="#ffd700"
+            emissiveIntensity={0.5}
+            transparent
+            opacity={0.9}
+          />
+          <rectAreaLight 
+            width={1.5}
+            height={2}
+            intensity={2}
+            color="#ffd700"
+            position={[0, 0.1, 0]}
+            rotation={[0, Math.PI, 0]}
+          />
+        </mesh>
+
+        {/* שאר החלונות החשוכים */}
+        <mesh geometry={nodes.Plane003.geometry} material={nodes.Plane003.material} position={[-0.935, 0.589, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh geometry={nodes.Plane006.geometry} material={nodes.Plane006.material} position={[-0.335, -0.537, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh geometry={nodes.Plane007.geometry} material={nodes.Plane007.material} position={[-0.926, -0.883, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh geometry={nodes.Plane008.geometry} material={nodes.Plane008.material} position={[0.697, -0.916, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh geometry={nodes.Plane009.geometry} material={nodes.Plane009.material} position={[0.469, 0.22, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+        <mesh geometry={nodes.Plane010.geometry} material={nodes.Plane010.material} position={[0.472, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            color="#1a1a1a"
+            transparent
+            opacity={0.9}
+          />
+        </mesh>
+      </group>
+
+      {/* פוסטר */}
       <group position={[0.432, 0.529, 0.656]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[0.327, 0.509, 0.327]}
         onPointerOver={() => setHoverPoster(true)}
         onPointerOut={() => setHoverPoster(false)}>
