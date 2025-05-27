@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import sideImage from './Group 97 (1).png'
 
 const HomePage = () => {
   const [hover, setHover] = useState(false)
@@ -93,7 +94,7 @@ const HomePage = () => {
         pointerEvents: 'none',
       }}>
         <img 
-          src="/src/pages/Group 97 (1).png" 
+          src={sideImage}
           alt="Design element" 
           style={{
             height: '1080px',
