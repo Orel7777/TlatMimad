@@ -230,6 +230,8 @@ const Room3d  = (props) =>{
       <group position={[1.1, -0.109, 0]} scale={0.47}>
         <mesh geometry={nodes.zhuozi001.geometry} material={materials['21___Default']} position={[-0.92, -0.68, 0]} />
       </group>
+
+      {/* מנורה */}
       <group position={[0.501, 0, 0.394]} rotation={[Math.PI, -0.418, Math.PI]} scale={0.101}>
         <mesh geometry={nodes.Cylinder.geometry} material={materials['Lampe gelb']} position={[0, 0.027, 0]} scale={5.052} />
         <group position={[0.237, 0.696, 0]} scale={5.052}>
@@ -250,7 +252,24 @@ const Room3d  = (props) =>{
           <mesh geometry={nodes.Cylinder062_1.geometry} material={materials['Material.003']} />
         </group>
         <mesh geometry={nodes.Cylinder009.geometry} material={materials.Schraube} position={[0.237, 0.059, 0]} scale={5.052} />
-        <mesh geometry={nodes.Cylinder010.geometry} material={materials.glas} rotation={[0, 0, -0.175]} scale={5.052} />
+        <mesh geometry={nodes.Cylinder010.geometry} material={materials.glas} rotation={[0, 0, -0.175]} scale={5.052}>
+          <pointLight
+            intensity={1.5}
+            distance={2}
+            decay={2}
+            color="#ffd28d"
+            castShadow
+          />
+          <spotLight
+            position={[0, 0.2, 0]}
+            angle={Math.PI / 3}
+            penumbra={1}
+            intensity={2}
+            color="#ffd28d"
+            castShadow
+            decay={2}
+          />
+        </mesh>
         <mesh geometry={nodes.Cylinder011.geometry} material={materials.Schraube} position={[-0.575, 1.816, 0]} rotation={[0, 0, -0.175]} scale={5.052} />
         <mesh geometry={nodes.Cylinder012.geometry} material={materials['Material.002']} position={[-0.861, 1.896, -0.037]} rotation={[-0.875, 0.135, -1.559]} scale={[0.134, 1.287, 0.099]} />
         <mesh geometry={nodes.Cylinder013.geometry} material={materials['Material.002']} position={[-0.859, 1.91, 0.019]} rotation={[0.396, -0.068, 1.533]} scale={[-0.134, -1.287, -0.099]} />
@@ -263,6 +282,8 @@ const Room3d  = (props) =>{
         <mesh geometry={nodes['220v_cable001'].geometry} material={materials.Plastik_Schwarz} position={[-0.247, -0.304, 0.026]} />
         <mesh geometry={nodes['220v_cable002'].geometry} material={materials.Plastik_Schwarz} position={[-0.133, -0.309, 0.022]} />
       </group>
+
+
 
       
       {/* מחשב */}
