@@ -8,10 +8,12 @@ import { useGraph, extend } from '@react-three/fiber'
 import { useGLTF, Outlines, useCursor } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { RectAreaLight } from 'three'
+import { useNavigate } from 'react-router-dom'
 
 extend({ RectAreaLight })
 
 const Room3d  = (props) =>{
+  const navigate = useNavigate()
   const { scene } = useGLTF('/model/glb/dor8.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
@@ -438,6 +440,35 @@ const Room3d  = (props) =>{
           />
         </mesh>
 
+        {/* חלון מואר נוסף */}
+        <mesh 
+          geometry={nodes.Plane003.geometry} 
+          material={nodes.Plane003.material} 
+          position={[-0.935, 0.589, -3.275]} 
+          rotation={[Math.PI / 2, 0, 0]} 
+          scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial
+            emissive="#ffd700"
+            emissiveIntensity={0.8}
+            transparent
+            opacity={0.95}
+          />
+          <rectAreaLight 
+            width={1.5}
+            height={2}
+            intensity={3}
+            color="#ffd700"
+            position={[0, 0.1, 0]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <pointLight
+            intensity={1}
+            distance={2}
+            color="#ffd700"
+            position={[0, 0.2, 0]}
+          />
+        </mesh>
+
         {/* חלון מואר ראשון */}
         <mesh 
           geometry={nodes.Plane004.geometry} 
@@ -485,13 +516,6 @@ const Room3d  = (props) =>{
         </mesh>
 
         {/* שאר החלונות החשוכים */}
-        <mesh geometry={nodes.Plane003.geometry} material={nodes.Plane003.material} position={[-0.935, 0.589, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
-        </mesh>
         <mesh geometry={nodes.Plane006.geometry} material={nodes.Plane006.material} position={[-0.335, -0.537, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
           <meshStandardMaterial
             color="#1a1a1a"
@@ -530,9 +554,14 @@ const Room3d  = (props) =>{
       </group>
 
       {/* פוסטר */}
-      <group position={[0.432, 0.529, 0.656]} rotation={[Math.PI / 2, 0, -Math.PI / 2]} scale={[0.327, 0.509, 0.327]}
+      <group 
+        position={[0.432, 0.529, 0.656]} 
+        rotation={[Math.PI / 2, 0, -Math.PI / 2]} 
+        scale={[0.327, 0.509, 0.327]}
         onPointerOver={() => setHoverPoster(true)}
-        onPointerOut={() => setHoverPoster(false)}>
+        onPointerOut={() => setHoverPoster(false)}
+        onClick={() => navigate('/poster')}
+        style={{ cursor: 'pointer' }}>
         <mesh geometry={nodes.Plane010_1.geometry} material={materials.frame_wood}>
           {hoverPoster && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
