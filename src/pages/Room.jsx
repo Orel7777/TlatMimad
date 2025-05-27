@@ -13,7 +13,7 @@ const KeyboardControls = () => {
       const speed = 0.15
       switch(event.key) {
         case 'ArrowUp':
-          if (camera.position.length() > 2.5) {
+          if (camera.position.length() > -5) {
             camera.position.multiplyScalar(0.95)
           }
           break
