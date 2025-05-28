@@ -15,9 +15,20 @@ extend({ RectAreaLight })
 
 const Room3d  = (props) =>{
   const navigate = useNavigate()
+  
+  // טעינת המודל הראשי
   const { scene } = useGLTF('/model/glb/dor8.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes, materials } = useGraph(clone)
+  const { nodes: mainNodes, materials: mainMaterials } = useGraph(clone)
+  
+  // טעינת המודל של המחשב
+  const { scene: computerScene } = useGLTF('/model/glb/dor10.glb')
+  const computerClone = React.useMemo(() => SkeletonUtils.clone(computerScene), [computerScene])
+  const { nodes: computerNodes, materials: computerMaterials } = useGraph(computerClone)
+  
+  // איחוד ה-nodes וה-materials
+  const nodes = { ...mainNodes, ...computerNodes }
+  const materials = { ...mainMaterials, ...computerMaterials }
   
   const [hoverPoster, setHoverPoster] = useState(false)
   const [hoverSnack, setHoverSnack] = useState(false)
@@ -230,81 +241,80 @@ const Room3d  = (props) =>{
 
 
       
-      {/* מחשב */}
-      <group 
-        position={[0.515, -0.003, 0.038]} 
-        rotation={[0, Math.PI / 2, 0]} 
-        scale={0.62}
-        onPointerEnter={() => setHoverComputer(true)}
-        onPointerLeave={() => setHoverComputer(false)}
-        onPointerMove={(e) => {
-          e.stopPropagation()
-          setHoverComputer(true)
-        }}>
-          
-        <group scale={[1.073, 1, 1.562]}>
-          <mesh 
-            geometry={nodes.Plane002_1.geometry} 
-            material={materials.BlackPlastic}
-            raycast={() => null}>
-            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
-          </mesh>
-          <mesh 
-            geometry={nodes.Plane002_2.geometry} 
-            material={materials['plastic touched']}
-            raycast={() => null}>
-            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
-          </mesh>
-          <mesh 
-            geometry={nodes.Plane002_3.geometry} 
-            material={materials.Screen}
-            onPointerEnter={(e) => {
-              e.stopPropagation()
-              setHoverScreen(true)
-            }}
-            onPointerLeave={(e) => {
-              e.stopPropagation()
-              setHoverScreen(false)
-            }}>
-            {(hoverComputer || hoverScreen) && <Outlines thickness={hoverScreen ? 8 : 6} color="#f1eded" />}
-          </mesh>
-          <mesh 
-            geometry={nodes.Plane002_4.geometry} 
-            material={materials['Metal Semirough 01']}
-            raycast={() => null}>
-            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
-          </mesh>
-          <mesh 
-            geometry={nodes.Plane002_5.geometry} 
-            material={materials.Nikon}
-            raycast={() => null}>
-            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
-          </mesh>
-          <mesh 
-            geometry={nodes.Plane002_6.geometry} 
-            material={materials.Texte}
-            raycast={() => null}>
-            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
-          </mesh>
-        </group>
-      </group>
-
-
-
-      <group position={[0.469, 0.618, 0.003]} rotation={[0, Math.PI / 2, 0]} scale={0.562}
-        onPointerOver={() => setHoverTV(true)}
-        onPointerOut={() => setHoverTV(false)}>
+      {/* מחשב חדש */}
+      <group position={[0.469, 0.618, 0.003]} rotation={[0, Math.PI / 2, 0]} scale={0.562}>
         <group position={[0, 0.363, -0.024]}>
-          <group position={[0, -0.345, 0]} scale={[1, 1, 1.699]}>
-            <mesh geometry={nodes.TV_1.geometry} material={materials.frame}>
+          {/* מסך המחשב */}
+      <group 
+            position={[0.005, -1.192, 0.108]} 
+            scale={[0.47, 0.542, 0.798]}
+            onPointerOver={() => setHoverComputer(true)}
+            onPointerOut={() => setHoverComputer(false)}>
+            {/* מסגרת המסך */}
+          <mesh 
+              geometry={nodes.computer_screen002_1.geometry} 
+              material={materials.frame}>
+            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
+          </mesh>
+            {/* מסך המחשב עצמו */}
+          <mesh 
+              geometry={nodes.computer_screen002_2.geometry} 
+              material={materials['Screen (tv).001']}>
+            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
+          </mesh>
+          </group>
+          
+          {/* מסך הטלוויזיה */}
+          <group 
+            position={[0, -0.345, 0]} 
+            scale={[1, 1, 1.699]}
+            onPointerOver={() => setHoverTV(true)}
+            onPointerOut={() => setHoverTV(false)}>
+            {/* מסגרת הטלוויזיה */}
+            <mesh 
+              geometry={nodes.TV_1.geometry} 
+              material={materials.frame}>
               {hoverTV && <Outlines thickness={6} color="#f1eded" />}
             </mesh>
-            <mesh geometry={nodes.TV_2.geometry} material={materials['Screen (tv)']}>
+            {/* מסך הטלוויזיה עצמו */}
+          <mesh 
+              geometry={nodes.TV_2.geometry} 
+              material={materials['Screen (tv)']}>
               {hoverTV && <Outlines thickness={6} color="#f1eded" />}
-            </mesh>
+          </mesh>
           </group>
         </group>
       </group>
+
+      {/* בסיס המסך */}
+      <group position={[-0.275, 0.161, -3.164]}>
+        <group 
+          position={[0.777, -0.162, 3.153]} 
+          rotation={[0, Math.PI / 2, 0]} 
+          scale={0.43}
+          onPointerOver={() => setHoverComputer(true)}
+          onPointerOut={() => setHoverComputer(false)}>
+          {/* חלקי הבסיס */}
+          <mesh 
+            geometry={nodes.Circle004.geometry} 
+            material={materials['monitor_plastic.001']}>
+            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
+          </mesh>
+          <mesh 
+            geometry={nodes.Circle004_1.geometry} 
+            material={materials['monitor_metal white.001']}>
+            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
+          </mesh>
+          <mesh 
+            geometry={nodes.Circle004_2.geometry} 
+            material={materials['monitor_metal 01.001']}>
+            {hoverComputer && <Outlines thickness={6} color="#f1eded" />}
+          </mesh>
+        </group>
+      </group>
+
+
+
       <group position={[0.692, 0.086, -0.321]} rotation={[-3.073, 0.865, -1.886]} scale={0.05}
         onPointerOver={() => setHoverSnack(true)}
         onPointerOut={() => setHoverSnack(false)}>
@@ -403,5 +413,6 @@ const Room3d  = (props) =>{
 }
 
 useGLTF.preload('/model/glb/dor8.glb')
+useGLTF.preload('/model/glb/dor10.glb')
 
 export default Room3d

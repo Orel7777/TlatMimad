@@ -60,23 +60,86 @@ const KeyboardControls = () => {
 }
 
 const Room = () => {
-  // const lightControls = useControls('תאורה', {
-  //   ambientIntensity: { value: 0.3, min: 0, max: 2, step: 0.1, label: 'עוצמת תאורת סביבה' },
-  //   directionalIntensity: { value: 1.5, min: 0, max: 3, step: 0.1, label: 'עוצמת תאורה ישירה' },
-  //   pointIntensity: { value: 1.0, min: 0, max: 2, step: 0.1, label: 'עוצמת נקודת אור' },
-  //   hemisphereIntensity: { value: 0.5, min: 0, max: 2, step: 0.1, label: 'עוצמת תאורת חצי כדור' },
-  // });
+  const ambientLightControls = useControls('תאורת בסיס', {
+    intensity: { value: 0.2, min: 0, max: 1, step: 0.1 },
+    color: { value: '#8b7a5c' }
+  });
 
-  // const cameraControls = useControls('מצלמה', {
-  //   minDistance: { value: 1.0, min: 1, max: 5, step: 0.1, label: 'מרחק מינימלי' },
-  //   maxDistance: { value: 1.7, min: 1, max: 5, step: 0.1, label: 'מרחק מקסימלי' },
-  //   rotateSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות סיבוב' },
-  //   zoomSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות זום' },
-  //   minAzimuthAngle: { value: 0.0, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מינימלי' },
-  //   maxAzimuthAngle: { value: -0.4, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מקסימלי' },
-  //   minPolarAngle: { value: 1.5, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מינימלי' },
-  //   maxPolarAngle: { value: 1.2, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מקסימלי' },
-  // });
+  const mainWindowLightControls = useControls('אור ראשי מהחלון', {
+    intensity: { value: 2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#fdf4e3' },
+    angle: { value: Math.PI / 4, min: 0, max: Math.PI / 2, step: 0.1 },
+    penumbra: { value: 0.5, min: 0, max: 1, step: 0.1 },
+    distance: { value: 20, min: 0, max: 50, step: 1 },
+    decay: { value: 1.5, min: 0, max: 5, step: 0.1 }
+  });
+
+  const secondaryWindowLightControls = useControls('אור משני מהחלון', {
+    intensity: { value: 2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#fff5e6' },
+    angle: { value: Math.PI / 3, min: 0, max: Math.PI / 2, step: 0.1 },
+    penumbra: { value: 0.7, min: 0, max: 1, step: 0.1 },
+    distance: { value: 15, min: 0, max: 50, step: 1 },
+    decay: { value: 1.8, min: 0, max: 5, step: 0.1 },
+    positionX: { value: 4, min: -10, max: 10, step: 0.1 },
+    positionY: { value: 3, min: -10, max: 10, step: 0.1 },
+    positionZ: { value: -1, min: -10, max: 10, step: 0.1 }
+  });
+
+  const diffuseLightControls = useControls('אור מפוזר מהחלון', {
+    intensity: { value: 2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#fffaf0' },
+    distance: { value: 12, min: 0, max: 50, step: 1 },
+    decay: { value: 2, min: 0, max: 5, step: 0.1 }
+  });
+
+  const floorReflectionControls = useControls('אור החזרה מהרצפה', {
+    intensity: { value: 4, min: 0, max: 30, step: 0.5 },
+    color: { value: '#fff5e6' },
+    distance: { value: 8, min: 0, max: 50, step: 1 },
+    decay: { value: 2.5, min: 0, max: 5, step: 0.1 },
+    positionX: { value: 2, min: -10, max: 10, step: 0.1 },
+    positionY: { value: 0, min: -10, max: 10, step: 0.1 },
+    positionZ: { value: 0, min: -10, max: 10, step: 0.1 }
+  });
+
+  const deskLampControls = useControls('תאורת מנורת שולחן', {
+    intensity: { value: 2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#f7dc6f' },
+    angle: { value: Math.PI / 3.5, min: 0, max: Math.PI / 2, step: 0.1 },
+    penumbra: { value: 0.3, min: 0, max: 1, step: 0.1 },
+    distance: { value: 8, min: 0, max: 50, step: 1 },
+    decay: { value: 1.0, min: 0, max: 5, step: 0.1 }
+  });
+
+  const additionalDeskLightControls = useControls('תאורה נוספת לשולחן', {
+    intensity: { value: 4.2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#f4d03f' },
+    distance: { value: 10, min: 0, max: 50, step: 1 },
+    decay: { value: 1.4, min: 0, max: 5, step: 0.1 },
+    positionX: { value: 0, min: -10, max: 10, step: 0.1 },
+    positionY: { value: 3.8, min: -10, max: 10, step: 0.1 },
+    positionZ: { value: 2.5, min: -10, max: 10, step: 0.1 }
+  });
+
+  const computerScreenControls = useControls('אור ממסך המחשב', {
+    intensity: { value: 6.8, min: 0, max: 30, step: 0.5 },
+    color: { value: '#e74c3c' },
+    distance: { value: 9, min: 0, max: 50, step: 1 },
+    decay: { value: 1.3, min: 0, max: 5, step: 0.1 }
+  });
+
+  const computerSideLightControls = useControls('תאורה צדדית למחשב', {
+    intensity: { value: 2, min: 0, max: 30, step: 0.5 },
+    color: { value: '#ff6b6b' },
+    angle: { value: Math.PI / 4, min: 0, max: Math.PI / 2, step: 0.1 },
+    penumbra: { value: 0.2, min: 0, max: 1, step: 0.1 },
+    distance: { value: 7, min: 0, max: 50, step: 1 },
+    decay: { value: 1.2, min: 0, max: 5, step: 0.1 },
+    positionX: { value: 0.8, min: -10, max: 10, step: 0.1 },
+    positionY: { value: 3.5, min: -10, max: 10, step: 0.1 },
+    positionZ: { value: 3.0, min: -10, max: 10, step: 0.1 }
+  });
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -107,8 +170,8 @@ const Room = () => {
             up: [0, 1, 0]
           }}
         >
-            <color attach="background" args={['#0a0a0a']} />
-            <fog attach="fog" args={['#0a0a0a', 5, 15]} />
+            <color attach="background" args={['#050505']} />
+            <fog attach="fog" args={['#050505', 3, 10]} />
             
             <Suspense fallback={<Loader />}>
                 <KeyboardControls />
@@ -129,10 +192,108 @@ const Room = () => {
                   target={[0, 0.3, 0]}
                 />
                 
-                <ambientLight intensity={0.15} />
-                <directionalLight position={[1, 1, 1]} intensity={0.8} castShadow />
-                <pointLight position={[0, 2, 0]} intensity={0.5} color="#2a2a3f" />
-                <hemisphereLight skyColor="#1a1a2a" groundColor="#000000" intensity={0.3} />
+                {/* תאורת בסיס עדינה */}
+                <ambientLight 
+                  intensity={ambientLightControls.intensity} 
+                  color={ambientLightControls.color} 
+                />
+
+                {/* אור ראשי מהחלון */}
+                <spotLight
+                  position={[4, 4, -2]}
+                  angle={mainWindowLightControls.angle}
+                  penumbra={mainWindowLightControls.penumbra}
+                  intensity={mainWindowLightControls.intensity}
+                  color={mainWindowLightControls.color}
+                  distance={mainWindowLightControls.distance}
+                  decay={mainWindowLightControls.decay}
+                  castShadow
+                />
+
+                {/* אור משני מהחלון */}
+                <spotLight
+                  position={[
+                    secondaryWindowLightControls.positionX,
+                    secondaryWindowLightControls.positionY,
+                    secondaryWindowLightControls.positionZ
+                  ]}
+                  angle={secondaryWindowLightControls.angle}
+                  penumbra={secondaryWindowLightControls.penumbra}
+                  intensity={secondaryWindowLightControls.intensity}
+                  color={secondaryWindowLightControls.color}
+                  distance={secondaryWindowLightControls.distance}
+                  decay={secondaryWindowLightControls.decay}
+                />
+
+                {/* אור מפוזר מהחלון */}
+                <pointLight
+                  position={[3.5, 2, -1.5]}
+                  intensity={diffuseLightControls.intensity}
+                  color={diffuseLightControls.color}
+                  distance={diffuseLightControls.distance}
+                  decay={diffuseLightControls.decay}
+                />
+
+                {/* אור החזרה מהרצפה */}
+                <pointLight
+                  position={[
+                    floorReflectionControls.positionX,
+                    floorReflectionControls.positionY,
+                    floorReflectionControls.positionZ
+                  ]}
+                  intensity={floorReflectionControls.intensity}
+                  color={floorReflectionControls.color}
+                  distance={floorReflectionControls.distance}
+                  decay={floorReflectionControls.decay}
+                />
+
+                {/* תאורת מנורת שולחן */}
+                <spotLight
+                  position={[-1.2, 4.5, 2.2]}
+                  angle={deskLampControls.angle}
+                  penumbra={deskLampControls.penumbra}
+                  intensity={deskLampControls.intensity}
+                  color={deskLampControls.color}
+                  distance={deskLampControls.distance}
+                  decay={deskLampControls.decay}
+                />
+
+                {/* תאורה נוספת לשולחן */}
+                <pointLight
+                  position={[
+                    additionalDeskLightControls.positionX,
+                    additionalDeskLightControls.positionY,
+                    additionalDeskLightControls.positionZ
+                  ]}
+                  intensity={additionalDeskLightControls.intensity}
+                  color={additionalDeskLightControls.color}
+                  distance={additionalDeskLightControls.distance}
+                  decay={additionalDeskLightControls.decay}
+                />
+
+                {/* אור ממסך המחשב */}
+                <pointLight
+                  position={[0, 3, 3.2]}
+                  intensity={computerScreenControls.intensity}
+                  color={computerScreenControls.color}
+                  distance={computerScreenControls.distance}
+                  decay={computerScreenControls.decay}
+                />
+
+                {/* תאורה צדדית למחשב */}
+                <spotLight
+                  position={[
+                    computerSideLightControls.positionX,
+                    computerSideLightControls.positionY,
+                    computerSideLightControls.positionZ
+                  ]}
+                  angle={computerSideLightControls.angle}
+                  penumbra={computerSideLightControls.penumbra}
+                  intensity={computerSideLightControls.intensity}
+                  color={computerSideLightControls.color}
+                  distance={computerSideLightControls.distance}
+                  decay={computerSideLightControls.decay}
+                />
                 
                 <Room3d />
             </Suspense>
