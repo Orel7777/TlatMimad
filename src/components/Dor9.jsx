@@ -9,6 +9,7 @@ import { useGLTF, Outlines, useCursor } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 import { RectAreaLight } from 'three'
 import { useNavigate } from 'react-router-dom'
+import { useControls } from 'leva'
 
 extend({ RectAreaLight })
 
@@ -25,127 +26,65 @@ const Room3d  = (props) =>{
   const [hoverTV, setHoverTV] = useState(false)
   const [hoverJoystick, setHoverJoystick] = useState(false)
 
+  // const lampControls = useControls('תאורת מנורה', {
+  //   pointLightIntensity: { value: 0.9, min: 0, max: 5, step: 0.1, label: 'עוצמת נקודת אור' },
+  //   pointLightDistance: { value: 1.0, min: 0, max: 10, step: 0.1, label: 'מרחק נקודת אור' },
+  //   pointLightDecay: { value: 2.0, min: 0, max: 5, step: 0.1, label: 'דעיכת נקודת אור' },
+  //   pointLightColor: { value: '#ffd28d', label: 'צבע נקודת אור' },
+  //   
+  //   spotLightIntensity: { value: 2.5, min: 0, max: 5, step: 0.1, label: 'עוצמת ספוט' },
+  //   spotLightAngle: { value: 0.9, min: 0, max: Math.PI, step: 0.1, label: 'זווית ספוט' },
+  //   spotLightPenumbra: { value: 0.4, min: 0, max: 1, step: 0.1, label: 'פנומברה ספוט' },
+  //   spotLightColor: { value: '#ffd28d', label: 'צבע ספוט' },
+  //   spotLightDecay: { value: 1.6, min: 0, max: 5, step: 0.1, label: 'דעיכת ספוט' }
+  // })
+
+  // const ambientLightControls = useControls('תאורת סביבה', {
+  //   ambientLightIntensity: { value: 0.0, min: 0, max: 2, step: 0.1, label: 'עוצמת תאורת סביבה' },
+  //   ambientLightColor: { value: '#ffffff', label: 'צבע תאורת סביבה' }
+  // })
+
   useCursor(hoverPoster || hoverSnack || hoverComputer || hoverTV || hoverJoystick || hoverScreen)
 
   return (
     <group {...props} dispose={null}>
       <group position={[0.759, -0.001, 0.023]} rotation={[-Math.PI, 1.379, -Math.PI]} scale={0.637}>
-        <mesh name="Key*" geometry={nodes['Key*'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key*'].morphTargetDictionary} morphTargetInfluences={nodes['Key*'].morphTargetInfluences} position={[0.022, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="Key," geometry={nodes['Key,'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key,'].morphTargetDictionary} morphTargetInfluences={nodes['Key,'].morphTargetInfluences} position={[-0.032, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Key-" geometry={nodes['Key-'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key-'].morphTargetDictionary} morphTargetInfluences={nodes['Key-'].morphTargetInfluences} position={[0.003, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Key" geometry={nodes.Key.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key.morphTargetDictionary} morphTargetInfluences={nodes.Key.morphTargetInfluences} position={[-0.015, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Key0" geometry={nodes.Key0.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key0.morphTargetDictionary} morphTargetInfluences={nodes.Key0.morphTargetInfluences} position={[-0.015, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key1" geometry={nodes.Key1.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key1.morphTargetDictionary} morphTargetInfluences={nodes.Key1.morphTargetInfluences} position={[-0.172, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key2" geometry={nodes.Key2.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key2.morphTargetDictionary} morphTargetInfluences={nodes.Key2.morphTargetInfluences} position={[-0.155, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key3" geometry={nodes.Key3.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key3.morphTargetDictionary} morphTargetInfluences={nodes.Key3.morphTargetInfluences} position={[-0.137, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key4" geometry={nodes.Key4.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key4.morphTargetDictionary} morphTargetInfluences={nodes.Key4.morphTargetInfluences} position={[-0.12, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key5" geometry={nodes.Key5.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key5.morphTargetDictionary} morphTargetInfluences={nodes.Key5.morphTargetInfluences} position={[-0.102, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key6" geometry={nodes.Key6.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key6.morphTargetDictionary} morphTargetInfluences={nodes.Key6.morphTargetInfluences} position={[-0.085, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key7" geometry={nodes.Key7.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key7.morphTargetDictionary} morphTargetInfluences={nodes.Key7.morphTargetInfluences} position={[-0.067, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key8" geometry={nodes.Key8.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key8.morphTargetDictionary} morphTargetInfluences={nodes.Key8.morphTargetInfluences} position={[-0.05, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key9" geometry={nodes.Key9.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Key9.morphTargetDictionary} morphTargetInfluences={nodes.Key9.morphTargetInfluences} position={[-0.033, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key<" geometry={nodes['Key<'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key<'].morphTargetDictionary} morphTargetInfluences={nodes['Key<'].morphTargetInfluences} position={[-0.172, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Key?" geometry={nodes['Key?'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key?'].morphTargetDictionary} morphTargetInfluences={nodes['Key?'].morphTargetInfluences} position={[0.002, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key^" geometry={nodes['Key^'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key^'].morphTargetDictionary} morphTargetInfluences={nodes['Key^'].morphTargetInfluences} position={[0.005, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyA" geometry={nodes.KeyA.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyA.morphTargetDictionary} morphTargetInfluences={nodes.KeyA.morphTargetInfluences} position={[-0.165, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyAvPag" geometry={nodes.KeyAvPag.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyAvPag.morphTargetDictionary} morphTargetInfluences={nodes.KeyAvPag.morphTargetInfluences} position={[0.12, 0.009, -0.012]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyB" geometry={nodes.KeyB.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyB.morphTargetDictionary} morphTargetInfluences={nodes.KeyB.morphTargetInfluences} position={[-0.085, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyBackspace" geometry={nodes.KeyBackspace.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyBackspace.morphTargetDictionary} morphTargetInfluences={nodes.KeyBackspace.morphTargetInfluences} position={[0.046, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyBloq" geometry={nodes.KeyBloq.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyBloq.morphTargetDictionary} morphTargetInfluences={nodes.KeyBloq.morphTargetInfluences} position={[0.055, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyBloqMayus" geometry={nodes.KeyBloqMayus.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyBloqMayus.morphTargetDictionary} morphTargetInfluences={nodes.KeyBloqMayus.morphTargetInfluences} position={[-0.186, 0.009, 0.006]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyC" geometry={nodes.KeyC.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyC.morphTargetDictionary} morphTargetInfluences={nodes.KeyC.morphTargetInfluences} position={[-0.12, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyD" geometry={nodes.KeyD.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyD.morphTargetDictionary} morphTargetInfluences={nodes.KeyD.morphTargetInfluences} position={[-0.13, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyDown" geometry={nodes.KeyDown.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyDown.morphTargetDictionary} morphTargetInfluences={nodes.KeyDown.morphTargetInfluences} position={[0.103, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyE" geometry={nodes.KeyE.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyE.morphTargetDictionary} morphTargetInfluences={nodes.KeyE.morphTargetInfluences} position={[-0.135, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyEnd" geometry={nodes.KeyEnd.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyEnd.morphTargetDictionary} morphTargetInfluences={nodes.KeyEnd.morphTargetInfluences} position={[0.103, 0.009, -0.012]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyEnter" geometry={nodes.KeyEnter.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyEnter.morphTargetDictionary} morphTargetInfluences={nodes.KeyEnter.morphTargetInfluences} position={[0.039, 0.008, -0.012]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyESC" geometry={nodes.KeyESC.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyESC.morphTargetDictionary} morphTargetInfluences={nodes.KeyESC.morphTargetInfluences} position={[-0.19, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF" geometry={nodes.KeyF.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF.morphTargetDictionary} morphTargetInfluences={nodes.KeyF.morphTargetInfluences} position={[-0.112, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF1" geometry={nodes.KeyF1.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF1.morphTargetDictionary} morphTargetInfluences={nodes.KeyF1.morphTargetInfluences} position={[-0.172, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF10" geometry={nodes.KeyF10.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF10.morphTargetDictionary} morphTargetInfluences={nodes.KeyF10.morphTargetInfluences} position={[-0.015, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF11" geometry={nodes.KeyF11.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF11.morphTargetDictionary} morphTargetInfluences={nodes.KeyF11.morphTargetInfluences} position={[0.002, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF12" geometry={nodes.KeyF12.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF12.morphTargetDictionary} morphTargetInfluences={nodes.KeyF12.morphTargetInfluences} position={[0.02, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF2" geometry={nodes.KeyF2.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF2.morphTargetDictionary} morphTargetInfluences={nodes.KeyF2.morphTargetInfluences} position={[-0.155, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF3" geometry={nodes.KeyF3.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF3.morphTargetDictionary} morphTargetInfluences={nodes.KeyF3.morphTargetInfluences} position={[-0.137, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF4" geometry={nodes.KeyF4.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF4.morphTargetDictionary} morphTargetInfluences={nodes.KeyF4.morphTargetInfluences} position={[-0.12, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF5" geometry={nodes.KeyF5.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF5.morphTargetDictionary} morphTargetInfluences={nodes.KeyF5.morphTargetInfluences} position={[-0.102, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF6" geometry={nodes.KeyF6.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF6.morphTargetDictionary} morphTargetInfluences={nodes.KeyF6.morphTargetInfluences} position={[-0.085, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF7" geometry={nodes.KeyF7.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF7.morphTargetDictionary} morphTargetInfluences={nodes.KeyF7.morphTargetInfluences} position={[-0.067, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF8" geometry={nodes.KeyF8.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF8.morphTargetDictionary} morphTargetInfluences={nodes.KeyF8.morphTargetInfluences} position={[-0.05, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyF9" geometry={nodes.KeyF9.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyF9.morphTargetDictionary} morphTargetInfluences={nodes.KeyF9.morphTargetInfluences} position={[-0.033, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyG" geometry={nodes.KeyG.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyG.morphTargetDictionary} morphTargetInfluences={nodes.KeyG.morphTargetInfluences} position={[-0.095, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyH" geometry={nodes.KeyH.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyH.morphTargetDictionary} morphTargetInfluences={nodes.KeyH.morphTargetInfluences} position={[-0.077, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyHome" geometry={nodes.KeyHome.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyHome.morphTargetDictionary} morphTargetInfluences={nodes.KeyHome.morphTargetInfluences} position={[0.103, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyI" geometry={nodes.KeyI.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyI.morphTargetDictionary} morphTargetInfluences={nodes.KeyI.morphTargetInfluences} position={[-0.048, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyImprPt" geometry={nodes.KeyImprPt.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyImprPt.morphTargetDictionary} morphTargetInfluences={nodes.KeyImprPt.morphTargetInfluences} position={[0.037, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyInsert" geometry={nodes.KeyInsert.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyInsert.morphTargetDictionary} morphTargetInfluences={nodes.KeyInsert.morphTargetInfluences} position={[0.085, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyJ" geometry={nodes.KeyJ.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyJ.morphTargetDictionary} morphTargetInfluences={nodes.KeyJ.morphTargetInfluences} position={[-0.06, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyK" geometry={nodes.KeyK.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyK.morphTargetDictionary} morphTargetInfluences={nodes.KeyK.morphTargetInfluences} position={[-0.042, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyL" geometry={nodes.KeyL.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyL.morphTargetDictionary} morphTargetInfluences={nodes.KeyL.morphTargetInfluences} position={[-0.025, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyLAlt" geometry={nodes.KeyLAlt.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyLAlt.morphTargetDictionary} morphTargetInfluences={nodes.KeyLAlt.morphTargetInfluences} position={[-0.15, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyLCtrl" geometry={nodes.KeyLCtrl.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyLCtrl.morphTargetDictionary} morphTargetInfluences={nodes.KeyLCtrl.morphTargetInfluences} position={[-0.189, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyLeft" geometry={nodes.KeyLeft.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyLeft.morphTargetDictionary} morphTargetInfluences={nodes.KeyLeft.morphTargetInfluences} position={[0.085, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyLShift" geometry={nodes.KeyLShift.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyLShift.morphTargetDictionary} morphTargetInfluences={nodes.KeyLShift.morphTargetInfluences} position={[-0.188, 0.008, 0.024]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyLWin" geometry={nodes.KeyLWin.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyLWin.morphTargetDictionary} morphTargetInfluences={nodes.KeyLWin.morphTargetInfluences} position={[-0.169, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyM" geometry={nodes.KeyM.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyM.morphTargetDictionary} morphTargetInfluences={nodes.KeyM.morphTargetInfluences} position={[-0.05, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyMenu" geometry={nodes.KeyMenu.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyMenu.morphTargetDictionary} morphTargetInfluences={nodes.KeyMenu.morphTargetInfluences} position={[0.034, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyN" geometry={nodes.KeyN.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyN.morphTargetDictionary} morphTargetInfluences={nodes.KeyN.morphTargetInfluences} position={[-0.067, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyO" geometry={nodes.KeyO.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyO.morphTargetDictionary} morphTargetInfluences={nodes.KeyO.morphTargetInfluences} position={[-0.03, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyP" geometry={nodes.KeyP.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyP.morphTargetDictionary} morphTargetInfluences={nodes.KeyP.morphTargetInfluences} position={[-0.013, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyPause" geometry={nodes.KeyPause.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyPause.morphTargetDictionary} morphTargetInfluences={nodes.KeyPause.morphTargetInfluences} position={[0.085, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyQ" geometry={nodes.KeyQ.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyQ.morphTargetDictionary} morphTargetInfluences={nodes.KeyQ.morphTargetInfluences} position={[-0.17, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyR" geometry={nodes.KeyR.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyR.morphTargetDictionary} morphTargetInfluences={nodes.KeyR.morphTargetInfluences} position={[-0.118, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRAlt" geometry={nodes.KeyRAlt.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRAlt.morphTargetDictionary} morphTargetInfluences={nodes.KeyRAlt.morphTargetInfluences} position={[-0.005, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRCtrl" geometry={nodes.KeyRCtrl.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRCtrl.morphTargetDictionary} morphTargetInfluences={nodes.KeyRCtrl.morphTargetInfluences} position={[0.054, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRePag" geometry={nodes.KeyRePag.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRePag.morphTargetDictionary} morphTargetInfluences={nodes.KeyRePag.morphTargetInfluences} position={[0.12, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRight" geometry={nodes.KeyRight.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRight.morphTargetDictionary} morphTargetInfluences={nodes.KeyRight.morphTargetInfluences} position={[0.12, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRShift" geometry={nodes.KeyRShift.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRShift.morphTargetDictionary} morphTargetInfluences={nodes.KeyRShift.morphTargetInfluences} position={[0.039, 0.008, 0.024]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyRWin" geometry={nodes.KeyRWin.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyRWin.morphTargetDictionary} morphTargetInfluences={nodes.KeyRWin.morphTargetInfluences} position={[0.015, 0.009, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyS" geometry={nodes.KeyS.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyS.morphTargetDictionary} morphTargetInfluences={nodes.KeyS.morphTargetInfluences} position={[-0.147, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeySpace" geometry={nodes.KeySpace.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeySpace.morphTargetDictionary} morphTargetInfluences={nodes.KeySpace.morphTargetInfluences} position={[-0.113, 0.008, 0.043]} scale={[1, 1, 1.424]} />
-        <mesh name="KeySupr" geometry={nodes.KeySupr.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeySupr.morphTargetDictionary} morphTargetInfluences={nodes.KeySupr.morphTargetInfluences} position={[0.085, 0.009, -0.012]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyT" geometry={nodes.KeyT.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyT.morphTargetDictionary} morphTargetInfluences={nodes.KeyT.morphTargetInfluences} position={[-0.1, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyTab" geometry={nodes.KeyTab.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyTab.morphTargetDictionary} morphTargetInfluences={nodes.KeyTab.morphTargetInfluences} position={[-0.189, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyU" geometry={nodes.KeyU.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyU.morphTargetDictionary} morphTargetInfluences={nodes.KeyU.morphTargetInfluences} position={[-0.065, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyUp" geometry={nodes.KeyUp.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyUp.morphTargetDictionary} morphTargetInfluences={nodes.KeyUp.morphTargetInfluences} position={[0.103, 0.008, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyV" geometry={nodes.KeyV.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyV.morphTargetDictionary} morphTargetInfluences={nodes.KeyV.morphTargetInfluences} position={[-0.102, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyVolumenDown" geometry={nodes.KeyVolumenDown.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyVolumenDown.morphTargetDictionary} morphTargetInfluences={nodes.KeyVolumenDown.morphTargetInfluences} position={[0.103, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyVolumenUp" geometry={nodes.KeyVolumenUp.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyVolumenUp.morphTargetDictionary} morphTargetInfluences={nodes.KeyVolumenUp.morphTargetInfluences} position={[0.12, 0.009, -0.045]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyW" geometry={nodes.KeyW.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyW.morphTargetDictionary} morphTargetInfluences={nodes.KeyW.morphTargetInfluences} position={[-0.153, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyX" geometry={nodes.KeyX.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyX.morphTargetDictionary} morphTargetInfluences={nodes.KeyX.morphTargetInfluences} position={[-0.137, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyY" geometry={nodes.KeyY.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyY.morphTargetDictionary} morphTargetInfluences={nodes.KeyY.morphTargetInfluences} position={[-0.083, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyZ" geometry={nodes.KeyZ.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyZ.morphTargetDictionary} morphTargetInfluences={nodes.KeyZ.morphTargetInfluences} position={[-0.155, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Key¨" geometry={nodes['Key¨'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key¨'].morphTargetDictionary} morphTargetInfluences={nodes['Key¨'].morphTargetInfluences} position={[0.01, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="Keyªº" geometry={nodes.Keyªº.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Keyªº.morphTargetDictionary} morphTargetInfluences={nodes.Keyªº.morphTargetInfluences} position={[-0.19, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="Key¿" geometry={nodes['Key¿'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Key¿'].morphTargetDictionary} morphTargetInfluences={nodes['Key¿'].morphTargetInfluences} position={[0.02, 0.009, -0.03]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyÇ" geometry={nodes.KeyÇ.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyÇ.morphTargetDictionary} morphTargetInfluences={nodes.KeyÇ.morphTargetInfluences} position={[0.028, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="KeyÑ" geometry={nodes.KeyÑ.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.KeyÑ.morphTargetDictionary} morphTargetInfluences={nodes.KeyÑ.morphTargetInfluences} position={[-0.007, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad*" geometry={nodes['Numpad*'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Numpad*'].morphTargetDictionary} morphTargetInfluences={nodes['Numpad*'].morphTargetInfluences} position={[0.183, 0.009, -0.029]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad+" geometry={nodes['Numpad+'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Numpad+'].morphTargetDictionary} morphTargetInfluences={nodes['Numpad+'].morphTargetInfluences} position={[0.2, 0.008, -0.003]} rotation={[0, Math.PI / 2, 0]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad-" geometry={nodes['Numpad-'].geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes['Numpad-'].morphTargetDictionary} morphTargetInfluences={nodes['Numpad-'].morphTargetInfluences} position={[0.2, 0.009, -0.029]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad" geometry={nodes.Numpad.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad.morphTargetDictionary} morphTargetInfluences={nodes.Numpad.morphTargetInfluences} position={[0.183, 0.008, 0.042]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad_1" geometry={nodes.Numpad_1.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad_1.morphTargetDictionary} morphTargetInfluences={nodes.Numpad_1.morphTargetInfluences} position={[0.165, 0.009, -0.029]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad0" geometry={nodes.Numpad0.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad0.morphTargetDictionary} morphTargetInfluences={nodes.Numpad0.morphTargetInfluences} position={[0.156, 0.008, 0.042]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad1" geometry={nodes.Numpad1.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad1.morphTargetDictionary} morphTargetInfluences={nodes.Numpad1.morphTargetInfluences} position={[0.148, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad2" geometry={nodes.Numpad2.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad2.morphTargetDictionary} morphTargetInfluences={nodes.Numpad2.morphTargetInfluences} position={[0.165, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad3" geometry={nodes.Numpad3.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad3.morphTargetDictionary} morphTargetInfluences={nodes.Numpad3.morphTargetInfluences} position={[0.183, 0.009, 0.025]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad4" geometry={nodes.Numpad4.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad4.morphTargetDictionary} morphTargetInfluences={nodes.Numpad4.morphTargetInfluences} position={[0.148, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad5" geometry={nodes.Numpad5.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad5.morphTargetDictionary} morphTargetInfluences={nodes.Numpad5.morphTargetInfluences} position={[0.165, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad6" geometry={nodes.Numpad6.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad6.morphTargetDictionary} morphTargetInfluences={nodes.Numpad6.morphTargetInfluences} position={[0.183, 0.009, 0.007]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad7" geometry={nodes.Numpad7.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad7.morphTargetDictionary} morphTargetInfluences={nodes.Numpad7.morphTargetInfluences} position={[0.148, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad8" geometry={nodes.Numpad8.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad8.morphTargetDictionary} morphTargetInfluences={nodes.Numpad8.morphTargetInfluences} position={[0.165, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="Numpad9" geometry={nodes.Numpad9.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.Numpad9.morphTargetDictionary} morphTargetInfluences={nodes.Numpad9.morphTargetInfluences} position={[0.183, 0.009, -0.011]} scale={[1, 1, 1.424]} />
-        <mesh name="NumpadBloqNum" geometry={nodes.NumpadBloqNum.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.NumpadBloqNum.morphTargetDictionary} morphTargetInfluences={nodes.NumpadBloqNum.morphTargetInfluences} position={[0.148, 0.009, -0.029]} scale={[1, 1, 1.424]} />
-        <mesh name="NumpadIntro" geometry={nodes.NumpadIntro.geometry} material={materials['Black Plastic']} morphTargetDictionary={nodes.NumpadIntro.morphTargetDictionary} morphTargetInfluences={nodes.NumpadIntro.morphTargetInfluences} position={[0.2, 0.008, 0.033]} rotation={[0, Math.PI / 2, 0]} scale={[1, 1, 1.424]} />
-        <mesh geometry={nodes.Plane001_1.geometry} material={materials['Black Plastic']} />
-        <mesh geometry={nodes.Plane001_2.geometry} material={materials.MarcaNegro} />
-        <mesh geometry={nodes.Plane001_3.geometry} material={materials['Rough Plastic Shader']} />
-        <mesh geometry={nodes.Plane001_4.geometry} material={materials['Matte Paint']} />
-        <mesh geometry={nodes.Plane001_5.geometry} material={materials['Metal scratched']} />
-        <mesh geometry={nodes.Plane001_6.geometry} material={materials['Plastico General']} />
+        {Object.entries(nodes).map(([key, node]) => {
+          if (key.startsWith('Key') || key.startsWith('Numpad') || key.startsWith('Plane001')) {
+            return (
+              <mesh
+                key={key}
+                name={key}
+                geometry={node.geometry}
+                morphTargetDictionary={node.morphTargetDictionary}
+                morphTargetInfluences={node.morphTargetInfluences}
+                position={node.position}
+                rotation={node.rotation}
+                scale={node.scale || [1, 1, 1.424]}
+              >
+                <meshStandardMaterial
+                  color="#000000"
+                  roughness={0.5}
+                  metalness={0.5}
+                />
+              </mesh>
+            );
+          }
+          return null;
+        })}
+        
         <group position={[0.147, 0.002, -0.042]}>
           <primitive object={nodes.Bone} />
-          <skinnedMesh geometry={nodes.Paw.geometry} material={materials['Black Plastic']} skeleton={nodes.Paw.skeleton} />
+          <skinnedMesh 
+            geometry={nodes.Paw.geometry} 
+            skeleton={nodes.Paw.skeleton}
+          >
+            <meshStandardMaterial
+              color="#000000"
+              roughness={0.5}
+              metalness={0.5}
+            />
+          </skinnedMesh>
         </group>
       </group>
 
@@ -154,46 +93,46 @@ const Room3d  = (props) =>{
         onPointerOver={() => setHoverJoystick(true)}
         onPointerOut={() => setHoverJoystick(false)}>
         <mesh geometry={nodes.analogic_buttons.geometry} material={materials.ps3_matte_plastic} position={[0, 0.054, 0.008]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.base.geometry} material={materials.ps3_glossy_plastic} position={[0, 0.056, 0.009]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.button_id.geometry} material={materials.ps3_btn_lightpink} position={[0.035, 0.051, -0.055]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.button_id001.geometry} material={materials.ps3_btn_lightgreen} position={[0.049, 0.047, -0.069]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.button_id002.geometry} material={materials.ps3_btn_lightblue} position={[0.049, 0.05, -0.041]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.button_id003.geometry} material={materials.ps3_btn_red} position={[0.062, 0.048, -0.054]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.cuts001.geometry} material={materials.ps_icon} position={[0, 0.044, -0.044]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.cuts002.geometry} material={materials.ps3_black_glossy} position={[-0.048, 0.044, -0.054]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.directional.geometry} material={materials.ps3_glossy_plastic} position={[-0.049, 0.043, -0.063]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.primary_buttons.geometry} material={materials.ps3_glossy_plastic} position={[0.049, 0.043, -0.067]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.r_buttons.geometry} material={materials.ps3_matte_plastic} position={[0, 0.059, 0.006]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.r_buttons001.geometry} material={materials.ps3_glossy_plastic} position={[0, 0.056, 0.009]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.secondary_buttons.geometry} material={materials.ps3_glossy_plastic} position={[-0.015, 0.045, -0.054]} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.Sphere001.geometry} material={materials.glass} rotation={[-0.172, 0, 0]}>
-          {hoverJoystick && <Outlines thickness={2} color="#f1eded" />}
+          {hoverJoystick && <Outlines thickness={4} color="#f1eded" />}
         </mesh>
       </group>
 
@@ -259,20 +198,20 @@ const Room3d  = (props) =>{
         <mesh geometry={nodes.Cylinder009.geometry} material={materials.Schraube} position={[0.237, 0.059, 0]} scale={5.052} />
         <mesh geometry={nodes.Cylinder010.geometry} material={materials.glas} rotation={[0, 0, -0.175]} scale={5.052}>
           <pointLight
-            intensity={1.5}
-            distance={2}
-            decay={2}
+            intensity={0.9}
+            distance={1.0}
+            decay={2.0}
             color="#ffd28d"
             castShadow
           />
           <spotLight
             position={[0, 0.2, 0]}
-            angle={Math.PI / 3}
-            penumbra={1}
-            intensity={2}
+            angle={0.9}
+            penumbra={0.4}
+            intensity={2.5}
             color="#ffd28d"
             castShadow
-            decay={2}
+            decay={1.6}
           />
         </mesh>
         <mesh geometry={nodes.Cylinder011.geometry} material={materials.Schraube} position={[-0.575, 1.816, 0]} rotation={[0, 0, -0.175]} scale={5.052} />
@@ -358,10 +297,10 @@ const Room3d  = (props) =>{
         <group position={[0, 0.363, -0.024]}>
           <group position={[0, -0.345, 0]} scale={[1, 1, 1.699]}>
             <mesh geometry={nodes.TV_1.geometry} material={materials.frame}>
-              {hoverTV && <Outlines thickness={4} color="#f1eded" />}
+              {hoverTV && <Outlines thickness={6} color="#f1eded" />}
             </mesh>
             <mesh geometry={nodes.TV_2.geometry} material={materials['Screen (tv)']}>
-              {hoverTV && <Outlines thickness={4} color="#f1eded" />}
+              {hoverTV && <Outlines thickness={6} color="#f1eded" />}
             </mesh>
           </group>
         </group>
@@ -374,7 +313,7 @@ const Room3d  = (props) =>{
           position={[-1.136, 0.411, 0.06]} 
           rotation={[Math.PI / 2, -1.493, Math.PI / 2]} 
           scale={[1.187, 1, 1]}>
-          {hoverSnack && <Outlines thickness={2} color="#f1eded" />}
+          {hoverSnack && <Outlines thickness={5} color="#f1eded" />}
         </mesh>
       </group>
       <mesh geometry={nodes.Cube.geometry} material={materials['Wall paint']} position={[0.363, 0.33, 0.357]} rotation={[-Math.PI, 0, 0]} scale={[-0.038, -0.757, -0.975]} />
@@ -411,145 +350,32 @@ const Room3d  = (props) =>{
 
     {/* חלונות */}
       <group>
-        {/* חלון מואר עליון */}
-        <mesh 
-          geometry={nodes.Plane002.geometry} 
-          material={nodes.Plane002.material} 
-          position={[-0.338, 0.98, -3.275]} 
-          rotation={[Math.PI / 2, 0, 0]} 
-          scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            emissive="#ffd700"
-            emissiveIntensity={0.8}
-            transparent
-            opacity={0.95}
-          />
-          <rectAreaLight 
-            width={1.5}
-            height={2}
-            intensity={3}
-            color="#ffd700"
-            position={[0, 0.1, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
-          <pointLight
-            intensity={1}
-            distance={2}
-            color="#ffd700"
-            position={[0, 0.2, 0]}
-          />
+        <mesh geometry={nodes.Plane002.geometry} position={[-0.338, 0.98, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-
-        {/* חלון מואר נוסף */}
-        <mesh 
-          geometry={nodes.Plane003.geometry} 
-          material={nodes.Plane003.material} 
-          position={[-0.935, 0.589, -3.275]} 
-          rotation={[Math.PI / 2, 0, 0]} 
-          scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            emissive="#ffd700"
-            emissiveIntensity={0.8}
-            transparent
-            opacity={0.95}
-          />
-          <rectAreaLight 
-            width={1.5}
-            height={2}
-            intensity={3}
-            color="#ffd700"
-            position={[0, 0.1, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
-          <pointLight
-            intensity={1}
-            distance={2}
-            color="#ffd700"
-            position={[0, 0.2, 0]}
-          />
+        <mesh geometry={nodes.Plane003.geometry} position={[-0.935, 0.589, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-
-        {/* חלון מואר ראשון */}
-        <mesh 
-          geometry={nodes.Plane004.geometry} 
-          material={nodes.Plane004.material} 
-          position={[-0.122, -0.16, -3.275]} 
-          rotation={[Math.PI / 2, 0, 0]} 
-          scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            emissive="#ffd700"
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.9}
-          />
-          <rectAreaLight 
-            width={1.5}
-            height={2}
-            intensity={2}
-            color="#ffd700"
-            position={[0, 0.1, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
+        <mesh geometry={nodes.Plane004.geometry} position={[-0.122, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-
-        {/* חלון מואר שני */}
-        <mesh 
-          geometry={nodes.Plane005.geometry} 
-          material={nodes.Plane005.material} 
-          position={[-1.146, -0.157, -3.275]} 
-          rotation={[Math.PI / 2, 0, 0]} 
-          scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            emissive="#ffd700"
-            emissiveIntensity={0.5}
-            transparent
-            opacity={0.9}
-          />
-          <rectAreaLight 
-            width={1.5}
-            height={2}
-            intensity={2}
-            color="#ffd700"
-            position={[0, 0.1, 0]}
-            rotation={[0, Math.PI, 0]}
-          />
+        <mesh geometry={nodes.Plane005.geometry} position={[-1.146, -0.157, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-
-        {/* שאר החלונות החשוכים */}
-        <mesh geometry={nodes.Plane006.geometry} material={nodes.Plane006.material} position={[-0.335, -0.537, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
+        <mesh geometry={nodes.Plane006.geometry} position={[-0.335, -0.537, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-        <mesh geometry={nodes.Plane007.geometry} material={nodes.Plane007.material} position={[-0.926, -0.883, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
+        <mesh geometry={nodes.Plane007.geometry} position={[-0.926, -0.883, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-        <mesh geometry={nodes.Plane008.geometry} material={nodes.Plane008.material} position={[0.697, -0.916, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
+        <mesh geometry={nodes.Plane008.geometry} position={[0.697, -0.916, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-        <mesh geometry={nodes.Plane009.geometry} material={nodes.Plane009.material} position={[0.469, 0.22, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
+        <mesh geometry={nodes.Plane009.geometry} position={[0.469, 0.22, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
-        <mesh geometry={nodes.Plane010.geometry} material={nodes.Plane010.material} position={[0.472, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
-          <meshStandardMaterial
-            color="#1a1a1a"
-            transparent
-            opacity={0.9}
-          />
+        <mesh geometry={nodes.Plane010.geometry} position={[0.472, -0.16, -3.275]} rotation={[Math.PI / 2, 0, 0]} scale={[0.087, 1.138, 0.128]}>
+          <meshStandardMaterial color="#0a0a0a" transparent opacity={0.9} emissive="#0a1a2a" emissiveIntensity={0.2} />
         </mesh>
       </group>
 
@@ -563,12 +389,15 @@ const Room3d  = (props) =>{
         onClick={() => navigate('/poster')}
         style={{ cursor: 'pointer' }}>
         <mesh geometry={nodes.Plane010_1.geometry} material={materials.frame_wood}>
-          {hoverPoster && <Outlines thickness={4} color="#f1eded" />}
+        <meshStandardMaterial color="#b2161e" />
+          {hoverPoster && <Outlines thickness={6} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.Plane010_2.geometry} material={materials.Poster}>
-          {hoverPoster && <Outlines thickness={4} color="#f1eded" />}
+          {hoverPoster && <Outlines thickness={6} color="#f1eded" />}
         </mesh>
       </group>
+
+      <ambientLight intensity={0.0} color="#ffffff" />
     </group>
   )
 }
