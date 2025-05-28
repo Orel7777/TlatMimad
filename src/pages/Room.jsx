@@ -4,6 +4,7 @@ import {Canvas, useThree} from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import Loader from '../components/Loader'
 import Room3d from '../components/Dor9'
+import { useControls } from 'leva'
 
 const KeyboardControls = () => {
   const { camera } = useThree()
@@ -59,6 +60,24 @@ const KeyboardControls = () => {
 }
 
 const Room = () => {
+  const lightControls = useControls('תאורה', {
+    ambientIntensity: { value: 0.3, min: 0, max: 2, step: 0.1, label: 'עוצמת תאורת סביבה' },
+    directionalIntensity: { value: 1.5, min: 0, max: 3, step: 0.1, label: 'עוצמת תאורה ישירה' },
+    pointIntensity: { value: 1.0, min: 0, max: 2, step: 0.1, label: 'עוצמת נקודת אור' },
+    hemisphereIntensity: { value: 0.5, min: 0, max: 2, step: 0.1, label: 'עוצמת תאורת חצי כדור' },
+  });
+
+  const cameraControls = useControls('מצלמה', {
+    minDistance: { value: 1.7, min: 1, max: 5, step: 0.1, label: 'מרחק מינימלי' },
+    maxDistance: { value: 1.7, min: 1, max: 5, step: 0.1, label: 'מרחק מקסימלי' },
+    rotateSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות סיבוב' },
+    zoomSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות זום' },
+    minAzimuthAngle: { value: -0.0, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מינימלי' },
+    maxAzimuthAngle: { value: -0.4, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מקסימלי' },
+    minPolarAngle: { value: 1.3, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מינימלי' },
+    maxPolarAngle: { value: 1.3, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מקסימלי' },
+  });
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     document.documentElement.style.overflow = 'hidden'
@@ -97,23 +116,23 @@ const Room = () => {
                   enableZoom={true}
                   enableRotate={true}
                   enablePan={false}
-                  minDistance={1.95}        // כמעט אותו מרחק כמו ההתחלתי
-                  maxDistance={2.3}        // אפשרות לזום אאוט קצת יותר
-                  minAzimuthAngle={1.2}     // הגבלת סיבוב מינימלית
-                  maxAzimuthAngle={1.4}     // הגבלת סיבוב מקסימלית
-                  minPolarAngle={0.9}       // אפשרות להסתכל יותר למטה
-                  maxPolarAngle={1.6}       // הגבלת זווית אנכית מקסימלית
-                  rotateSpeed={0.2}         // מהירות סיבוב איטית
-                  zoomSpeed={0.2}           // מהירות זום איטית
-                  enableDamping={true}      // תנועה חלקה
-                  dampingFactor={0.05}      // פקטור החלקה
+                  minDistance={cameraControls.minDistance}
+                  maxDistance={cameraControls.maxDistance}
+                  minAzimuthAngle={cameraControls.minAzimuthAngle}
+                  maxAzimuthAngle={cameraControls.maxAzimuthAngle}
+                  minPolarAngle={cameraControls.minPolarAngle}
+                  maxPolarAngle={cameraControls.maxPolarAngle}
+                  rotateSpeed={cameraControls.rotateSpeed}
+                  zoomSpeed={cameraControls.zoomSpeed}
+                  enableDamping={true}
+                  dampingFactor={0.05}
                   target={[0, 0.3, 0]}
                 />
                 
-                <ambientLight intensity={0.3} />
-                <directionalLight position={[1, 1, 1]} intensity={1.5} castShadow />
-                <pointLight position={[0, 2, 0]} intensity={1} color="#4f4f4f" />
-                <hemisphereLight skyColor="#4f4f4f" groundColor="#000000" intensity={0.5} />
+                <ambientLight intensity={lightControls.ambientIntensity} />
+                <directionalLight position={[1, 1, 1]} intensity={lightControls.directionalIntensity} castShadow />
+                <pointLight position={[0, 2, 0]} intensity={lightControls.pointIntensity} color="#4f4f4f" />
+                <hemisphereLight skyColor="#4f4f4f" groundColor="#000000" intensity={lightControls.hemisphereIntensity} />
                 
                 <Room3d />
             </Suspense>
