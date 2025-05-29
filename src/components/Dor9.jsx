@@ -30,6 +30,46 @@ const Room3d  = (props) =>{
   const nodes = { ...mainNodes, ...computerNodes }
   const materials = { ...mainMaterials, ...computerMaterials }
   
+  // בקרי Leva לפוסטר
+  const posterControls = useControls('פוסטר', {
+    position: {
+      value: [0.432, 0.529, 0.656],
+      step: 0.001,
+      label: 'מיקום'
+    },
+    rotation: {
+      value: [Math.PI / 2, 0, -Math.PI / 2],
+      step: 0.01,
+      label: 'סיבוב'
+    },
+    scale: {
+      value: [0.327, 0.509, 0.327],
+      step: 0.001,
+      min: 0.1,
+      max: 1,
+      label: 'גודל'
+    },
+    frameColor: {
+      value: '#b2161e',
+      label: 'צבע מסגרת'
+    }
+  })
+  
+  // בקרי Leva לתאורה
+  const lightControls = useControls('תאורה', {
+    intensity: {
+      value: 0.0,
+      min: 0,
+      max: 1,
+      step: 0.01,
+      label: 'עוצמת תאורה'
+    },
+    color: {
+      value: '#ffffff',
+      label: 'צבע תאורה'
+    }
+  })
+  
   const [hoverPoster, setHoverPoster] = useState(false)
   const [hoverSnack, setHoverSnack] = useState(false)
   const [hoverComputer, setHoverComputer] = useState(false)
@@ -391,15 +431,15 @@ const Room3d  = (props) =>{
 
       {/* פוסטר */}
       <group 
-        position={[0.432, 0.529, 0.656]} 
-        rotation={[Math.PI / 2, 0, -Math.PI / 2]} 
-        scale={[0.327, 0.509, 0.327]}
+        position={posterControls.position} 
+        rotation={posterControls.rotation} 
+        scale={posterControls.scale}
         onPointerOver={() => setHoverPoster(true)}
         onPointerOut={() => setHoverPoster(false)}
         onClick={() => navigate('/poster')}
         style={{ cursor: 'pointer' }}>
         <mesh geometry={nodes.Plane010_1.geometry} material={materials.frame_wood}>
-        <meshStandardMaterial color="#b2161e" />
+        <meshStandardMaterial color={posterControls.frameColor} />
           {hoverPoster && <Outlines thickness={6} color="#f1eded" />}
         </mesh>
         <mesh geometry={nodes.Plane010_2.geometry} material={materials.Poster}>
@@ -407,7 +447,7 @@ const Room3d  = (props) =>{
         </mesh>
       </group>
 
-      <ambientLight intensity={0.0} color="#ffffff" />
+      <ambientLight intensity={lightControls.intensity} color={lightControls.color} />
     </group>
   )
 }
