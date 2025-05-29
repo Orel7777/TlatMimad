@@ -64,6 +64,28 @@ const Room = () => {
     intensity: { value: 0.2, min: 0, max: 1, step: 0.1 },
     color: { value: '#8b7a5c' }
   });
+  
+  const cameraControls = useControls('מצלמה', {
+    minDistance: { value: 1.0, min: 1, max: 5, step: 0.1, label: 'מרחק מינימלי' },
+    maxDistance: { value: 1.7, min: 1, max: 5, step: 0.1, label: 'מרחק מקסימלי' },
+    rotateSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות סיבוב' },
+    zoomSpeed: { value: 0.3, min: 0.1, max: 1, step: 0.1, label: 'מהירות זום' },
+    minAzimuthAngle: { value: 0.0, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מינימלי' },
+    maxAzimuthAngle: { value: -0.4, min: -Math.PI, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אופקי מקסימלי' },
+    minPolarAngle: { value: 1.5, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מינימלי' },
+    maxPolarAngle: { value: 1.2, min: 0, max: Math.PI, step: 0.1, label: 'הגבלת סיבוב אנכי מקסימלי' },
+  });
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    
+    return () => {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+  }, [])
+
 
   const mainWindowLightControls = useControls('אור ראשי מהחלון', {
     intensity: { value: 2, min: 0, max: 30, step: 0.5 },
@@ -179,14 +201,23 @@ const Room = () => {
                   enableZoom={true}
                   enableRotate={true}
                   enablePan={false}
-                  minDistance={1.5}
-                  maxDistance={1.7}
-                  minAzimuthAngle={1}
-                  maxAzimuthAngle={1}
-                  minPolarAngle={1.5}
-                  maxPolarAngle={1.5}
-                  rotateSpeed={0.3}
-                  zoomSpeed={0.3}
+                  // minDistance={1.5}
+                  // maxDistance={1.7}
+                  // minAzimuthAngle={1}
+                  // maxAzimuthAngle={1}
+                  // minPolarAngle={1.5}
+                  // maxPolarAngle={1.5}
+                  // rotateSpeed={0.3}
+                  // zoomSpeed={0.3}
+                                    minDistance={cameraControls.minDistance}
+                  maxDistance={cameraControls.maxDistance}
+                  minAzimuthAngle={cameraControls.minAzimuthAngle}
+                  maxAzimuthAngle={cameraControls.maxAzimuthAngle}
+                  minPolarAngle={cameraControls.minPolarAngle}
+                  maxPolarAngle={cameraControls.maxPolarAngle}
+                  rotateSpeed={cameraControls.rotateSpeed}
+                  zoomSpeed={cameraControls.zoomSpeed}
+
                   enableDamping={true}
                   dampingFactor={0.05}
                   target={[0, 0.3, 0]}
